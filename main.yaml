@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Plantilla Principal - Proyecto codigo-cero (Anidada)"
+
+Parameters:
+  Proyecto:
+    Type: String
+    Default: codigo-cero
+  Ambiente:
+    Type: String
+    Default: dev
+  TipoInstancia:
+    Type: String
+    Default: t3.micro
+    AllowedValues: [t3.micro, t3.small]
+  MiIPPublica:
+    Type: String
+    Default: "189.28.71.162/32"
+  KeyName:
+    Type: String
+    Default: lab3-key
+
+Resources:
+  StackSeguridad:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://cfn-templates-codigo-cero-950796416490.s3.us-east-1.amazonaws.com/seguridad.yaml
+      Parameters:
+        Proyecto: !Ref Proyecto
+        Ambiente: !Ref Ambiente
+        MiIPPublica: !Ref MiIPPublica
+
+  StackServidor:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://cfn-templates-codigo-cero-950796416490.s3.us-east-1.amazonaws.com/servidor.yaml
+      Parameters:
+        Proyecto: !Ref Proyecto
+        Ambiente: !Ref Ambiente
+        TipoInstancia: !Ref TipoInstancia
+        KeyName: !Ref KeyName
+        SecurityGroupId: !GetAtt StackSeguridad.Outputs.SecurityGroupId
+
+  StackS3:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://cfn-templates-codigo-cero-950796416490.s3.us-east-1.amazonaws.com/s3.yaml
+      Parameters:
+        Proyecto: !Ref Proyecto
+        Ambiente: !Ref Ambiente
+
+Outputs:
+  BackendPublicIP:
+    Description: "IP Pública del servidor Backend"
+    Value: !GetAtt StackServidor.Outputs.BackendIP
+  
+  FrontendURL:
+    Description: "URL del sitio web estático en S3"
+    Value: !GetAtt StackS3.Outputs.SiteURL
