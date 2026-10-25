@@ -23,7 +23,8 @@ Resources:
   StackSeguridad:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://cfn-templates-codigo-cero-950796416490.s3.us-east-1.amazonaws.com/seguridad.yaml
+      #TemplateURL: https://cfn-templates-codigo-cero-950796416490.s3.us-east-1.amazonaws.com/seguridad.yaml
+      TemplateURL: https://raw.githubusercontent.com/developerkantuta/cloudFormationAws-github/main/seguridad.yaml
       Parameters:
         Proyecto: !Ref Proyecto
         Ambiente: !Ref Ambiente
@@ -32,7 +33,8 @@ Resources:
   StackServidor:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://cfn-templates-codigo-cero-950796416490.s3.us-east-1.amazonaws.com/servidor.yaml
+      #TemplateURL: https://cfn-templates-codigo-cero-950796416490.s3.us-east-1.amazonaws.com/servidor.yaml
+      TemplateURL: https://raw.githubusercontent.com/developerkantuta/cloudFormationAws-github/main/servidor.yaml
       Parameters:
         Proyecto: !Ref Proyecto
         Ambiente: !Ref Ambiente
@@ -43,7 +45,8 @@ Resources:
   StackS3:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://cfn-templates-codigo-cero-950796416490.s3.us-east-1.amazonaws.com/s3.yaml
+      #TemplateURL: https://cfn-templates-codigo-cero-950796416490.s3.us-east-1.amazonaws.com/s3.yaml
+      TemplateURL: https://raw.githubusercontent.com/developerkantuta/cloudFormationAws-github/main/s3.yaml
       Parameters:
         Proyecto: !Ref Proyecto
         Ambiente: !Ref Ambiente
