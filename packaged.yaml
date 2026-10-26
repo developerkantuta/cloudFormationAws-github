@@ -60,14 +60,6 @@ Resources:
           Ref: Proyecto
         Ambiente:
           Ref: Ambiente
-  StackS3Prueba:
-    Type: AWS::CloudFormation::Stack
-    Properties:
-      TemplateURL: 
-        https://s3.us-east-1.amazonaws.com/cfn-templates-codigo-cero-temp-950796416490/db9048f9d5b510470201438e93ec34c1.template
-      Parameters:
-        Proyecto: prueba
-        Ambiente: dev
 Outputs:
   BackendPublicIP:
     Description: IP Pública del servidor Backend
