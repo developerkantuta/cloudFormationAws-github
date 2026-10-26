@@ -55,7 +55,7 @@ Resources:
         Ambiente: !Ref Ambiente
 
     # NUEVO BUCKET DE PRUEBA (Agregado por un colaborador)
-  
+ 
 
 Outputs:
   BackendPublicIP:
