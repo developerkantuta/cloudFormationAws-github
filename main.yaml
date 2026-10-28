@@ -54,7 +54,7 @@ Resources:
         Proyecto: !Ref Proyecto
         Ambiente: !Ref Ambiente
 
-    # NUEVO BUCKET DE PRUEBA (Agregado por un colaborador)
+    # NUEVO BUCKET DE PRUEBA (con un colaborador)
   
 
 Outputs:
